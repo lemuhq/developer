@@ -267,7 +267,7 @@ export default function Home() {
                               <span className="hover:underline">{endpoint.name}</span>
                             </div>
                           </Link>
-                        </li>
+          </li>
                       ))}
                     </ul>
                   </div>

@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { API_DATA } from '@/app/api/apiData';
 
@@ -9,16 +8,6 @@ interface ApiSidebarProps {
 }
 
 export default function ApiSidebar({ activeEndpoint }: ApiSidebarProps) {
-  const [expandedCategories, setExpandedCategories] = useState<string[]>(API_DATA.map(cat => cat.name));
-
-  const toggleCategory = (categoryName: string) => {
-    if (expandedCategories.includes(categoryName)) {
-      setExpandedCategories(expandedCategories.filter(name => name !== categoryName));
-    } else {
-      setExpandedCategories([...expandedCategories, categoryName]);
-    }
-  };
-
   return (
     <div className="hidden md:block w-64 flex-shrink-0 bg-bg-secondary border-r border-border-color overflow-y-auto">
       <div className="p-6">

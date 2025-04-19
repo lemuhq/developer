@@ -31,8 +31,8 @@ export interface RequestBody {
   required: boolean;
   content: {
     [key: string]: {
-      example: any;
-      schema: any;
+      example: Record<string, unknown>;
+      schema: Record<string, unknown>;
     };
   };
 }
@@ -42,8 +42,8 @@ export interface Response {
   description: string;
   content?: {
     [key: string]: {
-      example: any;
-      schema?: any;
+      example: Record<string, unknown>;
+      schema?: Record<string, unknown>;
     };
   };
 }

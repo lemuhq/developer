@@ -142,8 +142,10 @@ function formatVSCodeJson(code: string): React.ReactNode {
   try {
     jsonObj = JSON.parse(code);
     code = JSON.stringify(jsonObj, null, 2);
-  } catch (e) {
+  } catch (error) {
     // If parsing fails, just use the original code
+    // Using underscore instead of 'e' to avoid unused variable
+    console.error('Error parsing JSON:', error);
   }
 
   const lines = code.split('\n');
@@ -379,15 +381,19 @@ export default function EndpointDetails({ endpoint }: EndpointDetailsProps) {
                   if (isFirst) roundedClass = 'rounded-l-md';
                   if (isLast) roundedClass += ' rounded-r-md';
                   
+                  const isActive = activeResponse === status;
+                  
                   return (
                     <button
                       key={status}
                       onClick={() => setActiveResponse(status)}
-                      className={`px-3 py-1.5 text-sm font-medium transition-all duration-200 border-r last:border-r-0 first:rounded-l-md last:rounded-r-md ${
-                        activeResponse === status
-                          ? `${getStatusClass(status)} shadow-inner`
-                          : 'text-text-secondary hover:bg-bg-tertiary'
-                      }`}
+                      className={`
+                        px-4 py-2 text-sm font-medium border
+                        ${getStatusClass(status)}
+                        ${isActive ? 'border-opacity-100 opacity-100' : 'border-opacity-50 opacity-75 hover:opacity-90'}
+                        transition-all duration-150 ease-in-out
+                        ${roundedClass}
+                      `}
                     >
                       {status}
                     </button>
