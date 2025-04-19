@@ -1,0 +1,8 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/authentication/page": "app/authentication/page.js",
+  "/errors/page": "app/errors/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js",
+  "/reference/[endpointId]/page": "app/reference/[endpointId]/page.js"
+}

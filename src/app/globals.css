@@ -1,0 +1,945 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  height: 100%;
+  background: linear-gradient(135deg, var(--bg-gradient-from), var(--bg-gradient-to));
+  background-attachment: fixed;
+}
+
+:root {
+  /* Common colors that don't change with theme */
+  --primary-color: #FF6B00;
+  --primary-light: #FF8A33;
+  --primary-dark: #E65000;
+  --secondary-color: #10B981;
+  --accent-color: #FF8A33;
+  
+  /* Dark mode is default - Warp-inspired dark theme */
+  --text-dark: #E4E7EB;
+  --text-light: #A9B1D6;
+  --text-muted: #858585;
+  --background-light: #1a1b26; 
+  --background-dark: #16161e;
+  --bg-gradient-from: #16161e;
+  --bg-gradient-to: #1a1b26;
+  
+  /* Terminal UI variables - dark theme */
+  --terminal-bg: #1e1e1e;
+  --terminal-text: #d4d4d4;
+  --terminal-border: #2f334d;
+  --terminal-header: #16161e;
+  --terminal-header-text: #858585;
+  --card-glass-bg: rgba(26, 27, 38, 0.7);
+  --card-glass-border: rgba(47, 51, 77, 0.4);
+  --card-glass-shadow: rgba(0, 0, 0, 0.3);
+  --card-depth-shadow: 
+    0 10px 15px -3px rgba(0, 0, 0, 0.3),
+    0 4px 6px -2px rgba(0, 0, 0, 0.15),
+    0 1px 0 rgba(255, 255, 255, 0.05) inset;
+  
+  /* Table styles - dark theme */
+  --table-header-bg: rgba(47, 51, 77, 0.3);
+  --table-border: rgba(47, 51, 77, 0.5);
+  --table-hover: rgba(47, 51, 77, 0.3);
+  
+  /* VS Code syntax highlighting - dark theme */
+  --code-keyword: #c586c0;
+  --code-string: #ce9178;
+  --code-number: #b5cea8;
+  --code-comment: #6a9955;
+  --code-function: #dcdcaa;
+  --code-property: #9cdcfe;
+  --code-operator: #d4d4d4;
+  --code-punctuation: #d4d4d4;
+  --code-boolean: #569cd6;
+  --code-background: #1e1e1e;
+  --code-line-number: #858585;
+  --code-current-line: #282828;
+  --code-current-line-border: #d7ba7d;
+  
+  /* Text primary color - dark theme */
+  --warning-color: #FF6B00;
+  --text-primary: white;
+  --text-secondary: #d1d5db;
+  --text-tertiary: #9ca3af;
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --accent-light: #60a5fa;
+  --accent-dark: #2563eb;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --success-color: #10b981;
+  --error-color: #ef4444;
+}
+
+/* Light mode theme */
+.light-mode {
+  --text-dark: #213547;
+  --text-light: #4a5568;
+  --text-muted: #718096;
+  --background-light: #ffffff;
+  --background-dark: #f5f7fa;
+  --bg-gradient-from: #f5f7fa;
+  --bg-gradient-to: #ffffff;
+  
+  /* Terminal UI variables - light theme */
+  --terminal-bg: #ffffff;
+  --terminal-text: #24292e;
+  --terminal-border: #e1e4e8;
+  --terminal-header: #f6f8fa;
+  --terminal-header-text: #57606a;
+  --card-glass-bg: rgba(255, 255, 255, 0.8);
+  --card-glass-border: rgba(224, 224, 224, 0.7);
+  --card-glass-shadow: rgba(0, 0, 0, 0.1);
+  --card-depth-shadow: 
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05),
+    0 1px 0 rgba(255, 255, 255, 0.6) inset;
+  
+  /* Table styles - light theme */
+  --table-header-bg: rgba(246, 248, 250, 0.8);
+  --table-border: rgba(224, 224, 224, 0.7);
+  --table-hover: rgba(246, 248, 250, 0.6);
+  
+  /* VS Code syntax highlighting - light theme */
+  --code-keyword: #af00db;
+  --code-string: #a31515;
+  --code-number: #098658;
+  --code-comment: #008000;
+  --code-function: #795e26;
+  --code-property: #0070c1;
+  --code-operator: #000000;
+  --code-punctuation: #000000;
+  --code-boolean: #0000ff;
+  --code-background: #ffffff;
+  --code-line-number: #237893;
+  --code-current-line: #f8f8f8;
+  --code-current-line-border: #cee7ff;
+  
+  /* Text primary color - light theme */
+  --text-primary: #0f172a;
+  --text-secondary: #1e293b;
+  --text-tertiary: #334155;
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-tertiary: #e2e8f0;
+  --accent-light: #60a5fa;
+  --accent-dark: #2563eb;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --error-color: #ef4444;
+}
+
+/* Add dark mode class for compatibility */
+.dark {
+  --text-dark: #E4E7EB;
+  --text-light: #A9B1D6;
+  --text-muted: #858585;
+  --background-light: #1a1b26; 
+  --background-dark: #16161e;
+  --bg-gradient-from: #16161e;
+  --bg-gradient-to: #1a1b26;
+  
+  /* Terminal UI variables - dark theme */
+  --terminal-bg: #1e1e1e;
+  --terminal-text: #d4d4d4;
+  --terminal-border: #2f334d;
+  --terminal-header: #16161e;
+  --terminal-header-text: #858585;
+  --card-glass-bg: rgba(26, 27, 38, 0.7);
+  --card-glass-border: rgba(47, 51, 77, 0.4);
+  --card-glass-shadow: rgba(0, 0, 0, 0.3);
+  --card-depth-shadow: 
+    0 10px 15px -3px rgba(0, 0, 0, 0.3),
+    0 4px 6px -2px rgba(0, 0, 0, 0.15),
+    0 1px 0 rgba(255, 255, 255, 0.05) inset;
+  
+  /* Text primary color - dark theme */
+  --text-primary: white;
+  --text-secondary: #d1d5db;
+  --text-tertiary: #9ca3af;
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --warning-color: #FF6B00;
+}
+
+body {
+  color: var(--text-dark);
+  background: linear-gradient(135deg, var(--bg-gradient-from), var(--bg-gradient-to));
+  background-attachment: fixed;
+  font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-dark);
+}
+
+p {
+  color: var(--text-light);
+}
+
+pre {
+  @apply overflow-x-auto;
+}
+
+code {
+  @apply font-mono;
+}
+
+.btn-primary {
+  @apply inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white transition-all duration-200;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  box-shadow: 
+    0 4px 6px -1px rgba(255, 107, 0, 0.2), 
+    0 2px 4px -1px rgba(255, 107, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+  box-shadow: 
+    0 10px 15px -3px rgba(255, 107, 0, 0.2), 
+    0 4px 6px -2px rgba(255, 107, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  @apply inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white transition-all duration-200;
+  background: linear-gradient(135deg, var(--secondary-color) 0%, #0e9f6e 100%);
+  box-shadow: 
+    0 4px 6px -1px rgba(16, 185, 129, 0.2), 
+    0 2px 4px -1px rgba(16, 185, 129, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, #34d399 0%, var(--secondary-color) 100%);
+  box-shadow: 
+    0 10px 15px -3px rgba(16, 185, 129, 0.2), 
+    0 4px 6px -2px rgba(16, 185, 129, 0.05),
+    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+  transform: translateY(-1px);
+}
+
+.text-primary {
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.05));
+}
+
+.bg-primary {
+  background: linear-gradient(135deg, #FF6B00 0%, #E65000 100%);
+}
+
+.bg-primary-light {
+  background: linear-gradient(135deg, #FF8A33 0%, #FF6B00 100%);
+}
+
+.bg-primary-dark {
+  background: linear-gradient(135deg, #E65000 0%, #d14800 100%);
+}
+
+.border-primary {
+  @apply border-[#FF6B00];
+}
+
+.hero {
+  background: linear-gradient(135deg, #FF6B00 0%, #E65000 100%);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.2);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+  opacity: 0.4;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.05) 100%);
+}
+
+.prose h2 {
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.05));
+}
+
+/* Method badges with darker themes */
+.method-get {
+  @apply shadow-sm;
+  color: var(--method-get-text, #E2F5E9);
+  background-color: var(--method-get-bg, rgba(16, 185, 129, 0.2));
+  border: 1px solid var(--method-get-border, rgba(16, 185, 129, 0.3));
+}
+
+.method-post {
+  @apply shadow-sm;
+  color: var(--method-post-text, #DDD6FE);
+  background-color: var(--method-post-bg, rgba(79, 70, 229, 0.2));
+  border: 1px solid var(--method-post-border, rgba(79, 70, 229, 0.3));
+}
+
+.method-put {
+  @apply shadow-sm;
+  color: var(--method-put-text, #FDE68A);
+  background-color: var(--method-put-bg, rgba(245, 158, 11, 0.2));
+  border: 1px solid var(--method-put-border, rgba(245, 158, 11, 0.3));
+}
+
+.method-delete {
+  @apply shadow-sm;
+  color: var(--method-delete-text, #FCA5A5);
+  background-color: var(--method-delete-bg, rgba(239, 68, 68, 0.2));
+  border: 1px solid var(--method-delete-border, rgba(239, 68, 68, 0.3));
+}
+
+.light-mode .method-get {
+  --method-get-text: #047857;
+  --method-get-bg: rgba(209, 250, 229, 0.8);
+  --method-get-border: rgba(167, 243, 208, 0.8);
+}
+
+.light-mode .method-post {
+  --method-post-text: #4338CA;
+  --method-post-bg: rgba(224, 231, 255, 0.8);
+  --method-post-border: rgba(199, 210, 254, 0.8);
+}
+
+.light-mode .method-put {
+  --method-put-text: #B45309;
+  --method-put-bg: rgba(254, 243, 199, 0.8);
+  --method-put-border: rgba(253, 230, 138, 0.8);
+}
+
+.light-mode .method-delete {
+  --method-delete-text: #B91C1C;
+  --method-delete-bg: rgba(254, 226, 226, 0.8);
+  --method-delete-border: rgba(254, 202, 202, 0.8);
+}
+
+.card {
+  @apply rounded-lg border p-6 transition-all duration-300;
+  background: linear-gradient(135deg, var(--card-glass-bg) 0%, var(--card-glass-bg) 100%);
+  border-color: var(--card-glass-border);
+  box-shadow: var(--card-depth-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.card:hover::before {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.card:hover {
+  box-shadow: 
+    0 10px 25px -5px var(--card-glass-shadow), 
+    0 10px 10px -5px var(--card-glass-shadow), 
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px);
+}
+
+.card-title {
+  @apply text-lg font-medium mb-2;
+  color: var(--text-dark);
+}
+
+.card-description {
+  @apply text-sm;
+  color: var(--text-light);
+}
+
+.section {
+  @apply py-12 relative;
+}
+
+.section.bg-white {
+  background: linear-gradient(135deg, var(--background-light) 0%, var(--background-dark) 100%);
+  background-attachment: fixed;
+}
+
+.section.bg-gray-50 {
+  background: linear-gradient(135deg, var(--background-dark) 0%, var(--background-light) 100%);
+  background-attachment: fixed;
+}
+
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.section-heading {
+  @apply text-base font-semibold tracking-wide uppercase;
+  background: linear-gradient(90deg, #FF6B00 0%, #FF8A33 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 4px rgba(255, 107, 0, 0.1));
+}
+
+.section-title {
+  @apply mt-2 text-3xl leading-8 font-extrabold tracking-tight sm:text-4xl;
+  color: var(--text-dark);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.section-description {
+  @apply mt-4 max-w-2xl text-xl lg:mx-auto;
+  color: var(--text-light);
+}
+
+/* Terminal-style code blocks - VS Code inspired */
+.terminal-window {
+  @apply rounded-lg overflow-hidden shadow-xl;
+  background-color: var(--code-background);
+  border: 1px solid var(--terminal-border);
+  box-shadow: 
+    0 10px 20px -5px var(--card-glass-shadow),
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+  font-family: 'Consolas', 'Monaco', 'Menlo', 'Courier New', monospace;
+}
+
+.terminal-window.border-0 {
+  border: none;
+  box-shadow: 
+    0 15px 25px -5px var(--card-glass-shadow),
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+}
+
+.terminal-header {
+  @apply flex items-center justify-between px-4 py-2;
+  background-color: var(--terminal-header);
+  border-bottom: 1px solid var(--terminal-border);
+}
+
+.terminal-controls {
+  @apply flex space-x-2;
+}
+
+.terminal-control {
+  @apply h-3 w-3 rounded-full shadow-inner;
+  transition: all 0.1s ease;
+}
+
+.terminal-control:hover {
+  filter: brightness(1.2);
+}
+
+.terminal-content {
+  @apply relative text-sm;
+  color: var(--terminal-text);
+  line-height: 1.5;
+  padding: 0;
+  position: relative;
+  counter-reset: line;
+}
+
+.terminal-content pre {
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+}
+
+.terminal-content code {
+  display: block;
+  padding: 0 0 0 3.5rem !important;
+  min-height: 1.5rem;
+  line-height: 1.5;
+  position: relative;
+  counter-increment: line;
+  white-space: pre;
+  tab-size: 2;
+}
+
+.terminal-content code::before {
+  content: counter(line);
+  display: inline-block;
+  width: 2.5rem;
+  padding-right: 0.5rem;
+  text-align: right;
+  color: var(--code-line-number);
+  position: absolute;
+  left: 0;
+  border-right: 1px solid var(--terminal-border);
+  background-color: var(--code-background);
+  user-select: none;
+}
+
+.terminal-content code:hover {
+  background-color: var(--terminal-header);
+}
+
+.terminal-content code:hover::before {
+  color: var(--text-dark);
+}
+
+.terminal-content code.current-line {
+  background-color: var(--code-current-line);
+  outline: none;
+  border-left: 2px solid var(--code-current-line-border);
+  margin-left: -1px;
+}
+
+/* VS Code syntax highlighting */
+.token-const, .token-let, .token-var, .token-function, .token-async, .token-await, .token-return,
+.token-if, .token-else, .token-try, .token-catch, .token-for, .token-while {
+  color: var(--code-keyword);
+}
+
+.token-string {
+  color: var(--code-string);
+}
+
+.token-number {
+  color: var(--code-number);
+}
+
+.token-comment {
+  color: var(--code-comment);
+}
+
+.token-function-name {
+  color: var(--code-function);
+}
+
+.token-property {
+  color: var(--code-property);
+}
+
+.token-method {
+  color: var(--code-function);
+}
+
+.token-param {
+  color: var(--code-property);
+}
+
+.token-operator {
+  color: var(--code-operator);
+}
+
+.token-punctuation {
+  color: var(--code-punctuation);
+}
+
+.token-boolean {
+  color: var(--code-boolean);
+}
+
+.token-null {
+  color: var(--code-boolean);
+}
+
+.terminal-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #007acc; /* VS Code status bar blue - consistent between themes */
+  color: white;
+  font-size: 12px;
+  padding: 0 10px;
+  height: 22px;
+}
+
+.terminal-status-left {
+  display: flex;
+  align-items: center;
+}
+
+.terminal-status-right {
+  display: flex;
+  align-items: center;
+}
+
+.editor-extension {
+  margin-right: 10px;
+}
+
+.line-col-indicator {
+  margin-left: 10px;
+}
+
+/* VS Code minimap simulation */
+.vscode-minimap {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  background-color: var(--code-background);
+  border-left: 1px solid var(--terminal-border);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--terminal-header);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--terminal-border);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Theme Toggle Styles */
+.theme-toggle {
+  position: relative;
+  width: 56px;
+  height: 28px;
+  border-radius: 14px;
+  background-color: var(--terminal-bg);
+  border: 2px solid var(--terminal-border);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+}
+
+.theme-toggle-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+.theme-toggle-thumb {
+  position: absolute;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #FFCC33;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.light-mode .theme-toggle-thumb {
+  transform: translateX(28px);
+  background-color: #5C8EF0;
+}
+
+.theme-toggle .moon-icon,
+.theme-toggle .sun-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--text-muted);
+  z-index: 1;
+}
+
+.theme-toggle .moon-icon {
+  margin-left: auto;
+}
+
+/* Dark theme overrides for Tailwind classes */
+.bg-white {
+  background-color: var(--background-light) !important;
+}
+
+.bg-gray-50, .bg-gray-100, .bg-gray-200 {
+  background-color: var(--background-dark) !important;
+}
+
+.text-gray-900 {
+  color: var(--text-dark) !important;
+}
+
+.text-gray-700, .text-gray-800 {
+  color: var(--text-dark) !important;
+}
+
+.text-gray-600 {
+  color: var(--text-light) !important;
+}
+
+.text-gray-500 {
+  color: var(--text-light) !important;
+}
+
+.text-gray-400 {
+  color: var(--text-muted) !important;
+}
+
+.border-gray-200, .border-gray-300 {
+  border-color: var(--terminal-border) !important;
+}
+
+.hover\:bg-gray-50:hover, .hover\:bg-gray-100:hover {
+  background-color: var(--table-hover) !important;
+}
+
+/* Focus state for inputs */
+input:focus, textarea:focus, select:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.2) !important;
+}
+
+/* Theme transition */
+.theme-transition,
+.theme-transition *,
+.theme-transition *:before,
+.theme-transition *:after {
+  transition: all 0.3s ease-in-out !important;
+  transition-delay: 0 !important;
+}
+
+/* Add theme toggle button styles */
+.theme-toggle {
+  position: relative;
+  width: 48px;
+  height: 24px;
+  border-radius: 24px;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.theme-toggle-track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  background-color: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.light-mode .theme-toggle-track {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle-thumb {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.light-mode .theme-toggle-thumb {
+  left: 26px;
+  background-color: #fff;
+}
+
+.sun-icon, .moon-icon {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s;
+}
+
+.sun-icon {
+  left: 6px;
+  opacity: 0;
+  color: #f59e0b;
+}
+
+.moon-icon {
+  right: 6px;
+  opacity: 1;
+  color: #f8f9fa;
+}
+
+.light-mode .sun-icon {
+  opacity: 1;
+}
+
+.light-mode .moon-icon {
+  opacity: 0;
+}
+
+/* Add light mode color scheme */
+:root {
+  /* Dark mode colors (default) */
+  --text-primary: #ffffff;
+  --text-secondary: #d1d5db;
+  --text-tertiary: #9ca3af;
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --accent-color: #3b82f6;
+  --accent-light: #60a5fa;
+  --accent-dark: #2563eb;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --error-color: #ef4444;
+  
+  /* Terminal UI Variables */
+  --terminal-bg: #0f172a;
+  --terminal-header: #1e293b;
+  --terminal-border: rgba(255, 255, 255, 0.1);
+  --terminal-text: #e2e8f0;
+  
+  /* Code highlighting */
+  --code-bg: #1e293b;
+  --code-text: #e2e8f0;
+  --code-comment: #64748b;
+  --code-keyword: #3b82f6;
+  --code-string: #10b981;
+  --code-number: #f59e0b;
+  --code-function: #d946ef;
+  --code-operator: #f97316;
+  --code-property: #60a5fa;
+  --code-variable: #e879f9;
+  --code-method: #22d3ee;
+  --code-class: #facc15;
+}
+
+.light-mode {
+  /* Light mode colors */
+  --text-primary: #0f172a;
+  --text-secondary: #1e293b;
+  --text-tertiary: #334155;
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-tertiary: #e2e8f0;
+  --accent-color: #3b82f6;
+  --accent-light: #60a5fa;
+  --accent-dark: #2563eb;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --error-color: #ef4444;
+  
+  /* Terminal UI Variables */
+  --terminal-bg: #f1f5f9;
+  --terminal-header: #e2e8f0;
+  --terminal-border: rgba(0, 0, 0, 0.1);
+  --terminal-text: #0f172a;
+  
+  /* Code highlighting */
+  --code-bg: #f1f5f9;
+  --code-text: #1e293b;
+  --code-comment: #64748b;
+  --code-keyword: #3b82f6;
+  --code-string: #10b981;
+  --code-number: #f59e0b;
+  --code-function: #d946ef;
+  --code-operator: #f97316;
+  --code-property: #3b82f6;
+  --code-variable: #d946ef;
+  --code-method: #0284c7;
+  --code-class: #ca8a04;
+}
+
+/* Update existing styles to use CSS variables */
+body {
+  color: var(--text-primary);
+  background: var(--bg-primary);
+}
+
+.bg-terminal-bg {
+  background-color: var(--terminal-bg);
+}
+
+.bg-terminal-header {
+  background-color: var(--terminal-header);
+}
+
+.border-terminal-border {
+  border-color: var(--terminal-border);
+}
+
+.text-terminal-text {
+  color: var(--terminal-text);
+}
+
+/* Update table styles */
+.light-mode .markdown-body table tr {
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+}
+
+.light-mode .markdown-body table tr:nth-child(2n) {
+  background-color: var(--bg-tertiary);
+}
+
+/* Update various gradient and appearance styles */
+.light-mode .bg-gradient-radial {
+  background-image: radial-gradient(circle at center, rgba(229, 231, 235, 0.2) 0%, rgba(209, 213, 219, 0.1) 25%, rgba(156, 163, 175, 0) 100%);
+}
+
+.light-mode .terminal-window {
+  background-color: var(--terminal-bg);
+  border: 1px solid var(--terminal-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .terminal-header {
+  background-color: var(--terminal-header);
+  border-bottom: 1px solid var(--terminal-border);
+}
+
+.light-mode .terminal-body pre {
+  color: var(--terminal-text);
+}
+
+@import "tailwindcss";
