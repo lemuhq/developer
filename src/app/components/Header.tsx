@@ -2,11 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import LemuLogo from '../../../public/lemulogo.png';
+
 
 export default function Header() {
   const [isApiKeyModalOpen, setIsApiKeyModalOpen] = useState(false);
-  const [apiKey, setApiKey] = useState('');
-  const [apiSecret, setApiSecret] = useState('');
+  const [apiKey, ] = useState('');
+  const [apiSecret, ] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
@@ -51,94 +54,54 @@ export default function Header() {
     }, 500);
   };
 
-  const generateDummyApiKey = () => {
-    setApiKey(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
-    setApiSecret(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
-    setIsApiKeyModalOpen(true);
-  };
+
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <header className="backdrop-blur-md bg-terminal-bg/80 shadow-md z-50 sticky top-0 border-b border-terminal-border">
+    <header className="backdrop-blur-md bg-terminal-bg/90 shadow-md z-50 sticky top-0 border-b border-terminal-border">
       <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:20px_20px] pointer-events-none"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
               <Link href="/" className="flex items-center group">
-                <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-white font-bold text-xl shadow-lg transform transition-all duration-300 group-hover:shadow-xl group-hover:scale-110 group-hover:rotate-3">
-                  L
-                </div>
-                <span className="ml-2 text-xl font-bold text-white drop-shadow-sm transition-all duration-300 group-hover:translate-x-1">Lemu API</span>
+                <Image 
+                  src={LemuLogo} 
+                  alt="Lemu API" 
+                  className="h-8 w-auto transition-all duration-300 group-hover:translate-x-1"
+                  width={100}
+                  height={32}
+                />
               </Link>
             </div>
             <nav className="hidden sm:ml-8 sm:flex sm:space-x-8">
               <Link 
                 href="/"
-                className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-300 hover:text-primary hover:border-primary transition-all duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+                className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-300 hover:text-accent-light transition-all duration-200 font-mono"
               >
-                Home
+                _home
               </Link>
               <Link 
                 href="/authentication"
-                className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-300 hover:text-primary hover:border-primary transition-all duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+                className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-300 hover:text-accent-light transition-all duration-200 font-mono"
               >
-                Authentication
+                _authentication
+              </Link>
+              <Link 
+                href="/reference"
+                className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-300 hover:text-accent-light transition-all duration-200 font-mono"
+              >
+                _endpoints
               </Link>
               <Link 
                 href="/errors"
-                className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-300 hover:text-primary hover:border-primary transition-all duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+                className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-300 hover:text-accent-light transition-all duration-200 font-mono"
               >
-                Errors
+                _errors
               </Link>
-              {/* <div className="relative group">
-                <button 
-                  className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-300 hover:text-primary hover:border-primary transition-all duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  onMouseEnter={() => setIsDropdownOpen(true)}
-                >
-                  API Reference
-                  <svg className="ml-2 h-5 w-5 text-gray-400 group-hover:text-primary transition-colors" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                </button>
-                <div 
-                  className={`absolute z-10 transform transition-all duration-200 origin-top-right mt-1 w-56 rounded-xl shadow-lg bg-terminal-bg/95 backdrop-blur-md border border-terminal-border ring-1 ring-black/10 ${
-                    isDropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
-                  }`}
-                  onMouseLeave={() => setIsDropdownOpen(false)}
-                  style={{ left: '-8px' }}
-                >
-                  <div className="py-2 rounded-xl overflow-hidden" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                    <div className="px-3 py-1.5 text-xs uppercase tracking-wider text-gray-400 border-b border-terminal-border/40 mb-1">
-                      API Endpoints
-                    </div>
-                    <Link href="/reference/get-bank-list" className="flex items-center px-3 py-2 text-sm text-gray-300 hover:bg-primary/10 hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary/50">
-                      <span className="inline-block w-6 h-6 mr-2 bg-primary/10 rounded-md flex items-center justify-center text-primary text-xs">GET</span>
-                      <span>Get Bank List</span>
-                    </Link>
-                    <Link href="/reference/verify-bank-account" className="flex items-center px-3 py-2 text-sm text-gray-300 hover:bg-primary/10 hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary/50">
-                      <span className="inline-block w-6 h-6 mr-2 bg-primary/10 rounded-md flex items-center justify-center text-primary text-xs">POST</span>
-                      <span>Verify Bank Account</span>
-                    </Link>
-                    <Link href="/reference/initiate-transfer" className="flex items-center px-3 py-2 text-sm text-gray-300 hover:bg-primary/10 hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary/50">
-                      <span className="inline-block w-6 h-6 mr-2 bg-primary/10 rounded-md flex items-center justify-center text-primary text-xs">POST</span>
-                      <span>Initiate Transfer</span>
-                    </Link>
-                    <Link href="/reference/get-transaction" className="flex items-center px-3 py-2 text-sm text-gray-300 hover:bg-primary/10 hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary/50">
-                      <span className="inline-block w-6 h-6 mr-2 bg-primary/10 rounded-md flex items-center justify-center text-primary text-xs">GET</span>
-                      <span>Get Transaction</span>
-                    </Link>
-                    <Link href="/reference/create-webhook" className="flex items-center px-3 py-2 text-sm text-gray-300 hover:bg-primary/10 hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary/50">
-                      <span className="inline-block w-6 h-6 mr-2 bg-primary/10 rounded-md flex items-center justify-center text-primary text-xs">POST</span>
-                      <span>Create Webhook</span>
-                    </Link>
-                  </div>
-                </div>
-              </div> */}
             </nav>
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
@@ -159,14 +122,16 @@ export default function Header() {
               <div className="theme-toggle-thumb"></div>
             </button>
 
-            <button 
-              onClick={generateDummyApiKey}
-              className="inline-flex items-center px-5 py-2.5 border border-transparent text-base font-medium rounded-lg shadow-md text-white bg-gradient-to-r from-primary to-primary-dark hover:from-primary-light hover:to-primary transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg relative overflow-hidden group"
+            <a 
+              href="https://business.lemu.africa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-5 py-2.5 border border-transparent text-base font-medium rounded-lg shadow-md text-white bg-gradient-to-r from-accent-light to-accent-dark hover:from-accent-light hover:to-accent-dark/70 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg relative overflow-hidden group font-mono"
             >
               <span className="relative z-10">Get API Key</span>
-              <span className="absolute inset-0 bg-gradient-to-r from-primary to-primary-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
+              <span className="absolute inset-0 bg-gradient-to-r from-accent-light to-accent-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
               <span className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
-            </button>
+            </a>
           </div>
           <div className="-mr-2 flex items-center sm:hidden">
             {/* Theme toggle button (mobile) */}
@@ -285,12 +250,14 @@ export default function Header() {
               </div>
             </div>
             <div className="mt-4 mx-4">
-              <button 
-                onClick={generateDummyApiKey}
+              <a 
+                href="https://business.lemu.africa"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-lg text-base font-medium text-white bg-gradient-to-r from-primary to-primary-dark hover:from-primary-light hover:to-primary transition-all duration-300 transform hover:-translate-y-1"
               >
                 Get API Key
-              </button>
+              </a>
             </div>
           </div>
         </div>

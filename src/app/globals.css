@@ -16,60 +16,60 @@ html, body {
   --secondary-color: #10B981;
   --accent-color: #FF8A33;
   
-  /* Dark mode is default - Warp-inspired dark theme */
-  --text-dark: #E4E7EB;
+  /* Dark theme inspired by the Davide Simone terminal look */
+  --text-dark: #E4E7EB; 
   --text-light: #A9B1D6;
   --text-muted: #858585;
-  --background-light: #1a1b26; 
-  --background-dark: #16161e;
-  --bg-gradient-from: #16161e;
-  --bg-gradient-to: #1a1b26;
+  --background-light: #061320; 
+  --background-dark: #041019;
+  --bg-gradient-from: #041019;
+  --bg-gradient-to: #072638;
   
   /* Terminal UI variables - dark theme */
-  --terminal-bg: #1e1e1e;
+  --terminal-bg: #051521;
   --terminal-text: #d4d4d4;
-  --terminal-border: #2f334d;
-  --terminal-header: #16161e;
+  --terminal-border: #0b2e41;
+  --terminal-header: #051521;
   --terminal-header-text: #858585;
-  --card-glass-bg: rgba(26, 27, 38, 0.7);
-  --card-glass-border: rgba(47, 51, 77, 0.4);
+  --card-glass-bg: rgba(5, 21, 33, 0.8);
+  --card-glass-border: rgba(11, 46, 65, 0.4);
   --card-glass-shadow: rgba(0, 0, 0, 0.3);
   --card-depth-shadow: 
-    0 10px 15px -3px rgba(0, 0, 0, 0.3),
-    0 4px 6px -2px rgba(0, 0, 0, 0.15),
-    0 1px 0 rgba(255, 255, 255, 0.05) inset;
+    0 10px 15px -3px rgba(0, 0, 0, 0.4),
+    0 4px 6px -2px rgba(0, 0, 0, 0.2),
+    0 1px 0 rgba(7, 182, 213, 0.05) inset;
   
   /* Table styles - dark theme */
-  --table-header-bg: rgba(47, 51, 77, 0.3);
-  --table-border: rgba(47, 51, 77, 0.5);
-  --table-hover: rgba(47, 51, 77, 0.3);
+  --table-header-bg: rgba(11, 46, 65, 0.3);
+  --table-border: rgba(11, 46, 65, 0.5);
+  --table-hover: rgba(11, 46, 65, 0.3);
   
-  /* VS Code syntax highlighting - dark theme */
+  /* VS Code syntax highlighting - terminal theme */
   --code-keyword: #c586c0;
   --code-string: #ce9178;
   --code-number: #b5cea8;
   --code-comment: #6a9955;
-  --code-function: #dcdcaa;
+  --code-function: #4ec9b0;
   --code-property: #9cdcfe;
   --code-operator: #d4d4d4;
   --code-punctuation: #d4d4d4;
   --code-boolean: #569cd6;
-  --code-background: #1e1e1e;
+  --code-background: #051521;
   --code-line-number: #858585;
-  --code-current-line: #282828;
-  --code-current-line-border: #d7ba7d;
+  --code-current-line: #0d2e40;
+  --code-current-line-border: #07b6d5;
   
   /* Text primary color - dark theme */
   --warning-color: #FF6B00;
   --text-primary: white;
   --text-secondary: #d1d5db;
   --text-tertiary: #9ca3af;
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-tertiary: #334155;
-  --accent-light: #60a5fa;
-  --accent-dark: #2563eb;
-  --border-color: rgba(255, 255, 255, 0.1);
+  --bg-primary: #051521;
+  --bg-secondary: #0a2539;
+  --bg-tertiary: #0e3c54;
+  --accent-light: #07b6d5;
+  --accent-dark: #0891b2;
+  --border-color: rgba(7, 182, 213, 0.2);
   --success-color: #10b981;
   --error-color: #ef4444;
 }
@@ -127,7 +127,7 @@ html, body {
   --bg-tertiary: #e2e8f0;
   --accent-light: #60a5fa;
   --accent-dark: #2563eb;
-  --border-color: rgba(0, 0, 0, 0.1);
+  --border-color: rgba(0, 0, 0, 0);
   --success-color: #10b981;
   --warning-color: #f59e0b;
   --error-color: #ef4444;
@@ -340,6 +340,23 @@ code {
   --method-delete-text: #B91C1C;
   --method-delete-bg: rgba(254, 226, 226, 0.8);
   --method-delete-border: rgba(254, 202, 202, 0.8);
+}
+
+/* Make sure GET/POST/PUT/DELETE badges have their original colors */
+.light-mode [class*="get"] {
+  color: #047857 !important;
+}
+
+.light-mode [class*="post"] {
+  color: #4338CA !important;
+}
+
+.light-mode [class*="put"] {
+  color: #B45309 !important;
+}
+
+.light-mode [class*="delete"] {
+  color: #B91C1C !important;
 }
 
 .card {
@@ -821,36 +838,36 @@ input:focus, textarea:focus, select:focus {
   --text-primary: #ffffff;
   --text-secondary: #d1d5db;
   --text-tertiary: #9ca3af;
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-tertiary: #334155;
-  --accent-color: #3b82f6;
+  --bg-primary: #051521;
+  --bg-secondary: #0a2539;
+  --bg-tertiary: #0e3c54;
+  --accent-color: #07b6d5;
   --accent-light: #60a5fa;
-  --accent-dark: #2563eb;
-  --border-color: rgba(255, 255, 255, 0.1);
+  --accent-dark: #0891b2;
+  --border-color: rgba(7, 182, 213, 0.2);
   --success-color: #10b981;
-  --warning-color: #f59e0b;
+  --warning-color: #FF6B00;
   --error-color: #ef4444;
   
   /* Terminal UI Variables */
-  --terminal-bg: #0f172a;
-  --terminal-header: #1e293b;
-  --terminal-border: rgba(255, 255, 255, 0.1);
-  --terminal-text: #e2e8f0;
+  --terminal-bg: #051521;
+  --terminal-header: #051521;
+  --terminal-border: #0b2e41;
+  --terminal-text: #d4d4d4;
   
   /* Code highlighting */
-  --code-bg: #1e293b;
-  --code-text: #e2e8f0;
-  --code-comment: #64748b;
-  --code-keyword: #3b82f6;
-  --code-string: #10b981;
-  --code-number: #f59e0b;
-  --code-function: #d946ef;
-  --code-operator: #f97316;
-  --code-property: #60a5fa;
-  --code-variable: #e879f9;
-  --code-method: #22d3ee;
-  --code-class: #facc15;
+  --code-bg: #051521;
+  --code-text: #d4d4d4;
+  --code-comment: #6a9955;
+  --code-keyword: #c586c0;
+  --code-string: #ce9178;
+  --code-number: #b5cea8;
+  --code-function: #4ec9b0;
+  --code-operator: #d4d4d4;
+  --code-property: #9cdcfe;
+  --code-variable: #9cdcfe;
+  --code-method: #dcdcaa;
+  --code-class: #4ec9b0;
 }
 
 .light-mode {
@@ -864,7 +881,7 @@ input:focus, textarea:focus, select:focus {
   --accent-color: #3b82f6;
   --accent-light: #60a5fa;
   --accent-dark: #2563eb;
-  --border-color: rgba(0, 0, 0, 0.1);
+  --border-color: rgba(226, 232, 240, 0.8);
   --success-color: #10b981;
   --warning-color: #f59e0b;
   --error-color: #ef4444;
@@ -872,8 +889,13 @@ input:focus, textarea:focus, select:focus {
   /* Terminal UI Variables */
   --terminal-bg: #f1f5f9;
   --terminal-header: #e2e8f0;
-  --terminal-border: rgba(0, 0, 0, 0.1);
+  --terminal-border: rgba(226, 232, 240, 0.8);
   --terminal-text: #0f172a;
+  
+  /* Table styles - light theme */
+  --table-header-bg: rgba(241, 245, 249, 0.8);
+  --table-border: rgba(226, 232, 240, 0.8);
+  --table-hover: rgba(241, 245, 249, 0.6);
   
   /* Code highlighting */
   --code-bg: #f1f5f9;
@@ -929,17 +951,385 @@ body {
 
 .light-mode .terminal-window {
   background-color: var(--terminal-bg);
-  border: 1px solid var(--terminal-border);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
 
 .light-mode .terminal-header {
   background-color: var(--terminal-header);
-  border-bottom: 1px solid var(--terminal-border);
+  border-bottom: none;
 }
 
 .light-mode .terminal-body pre {
   color: var(--terminal-text);
+}
+
+/* Light mode table overrides to remove borders */
+.light-mode table {
+  border: 1px solid var(--table-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.light-mode table th, 
+.light-mode table td {
+  border: none;
+}
+
+/* Also remove borders from headers and footers */
+.light-mode header, 
+.light-mode footer {
+  border: none !important;
+}
+
+/* Force remove all borders in light mode */
+.light-mode table,
+.light-mode th,
+.light-mode td,
+.light-mode tr,
+.light-mode thead,
+.light-mode tbody,
+.light-mode tfoot {
+  border: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.light-mode table tr {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+.light-mode *[class*="border"],
+.light-mode *[class*="border-t"],
+.light-mode *[class*="border-b"],
+.light-mode *[class*="border-l"],
+.light-mode *[class*="border-r"] {
+  border-color: transparent !important;
+}
+
+.light-mode hr,
+.light-mode .divider {
+  border-color: transparent !important;
+}
+
+.light-mode header,
+.light-mode footer,
+.light-mode main,
+.light-mode section,
+.light-mode nav,
+.light-mode aside,
+.light-mode article,
+.light-mode div {
+  border-color: transparent !important;
+}
+
+.light-mode pre,
+.light-mode code,
+.light-mode .terminal-window,
+.light-mode .terminal-header,
+.light-mode .terminal-content {
+  border: none !important;
+}
+
+.light-mode .border,
+.light-mode .border-t,
+.light-mode .border-b,
+.light-mode .border-l,
+.light-mode .border-r {
+  border-width: 0 !important;
+}
+
+/* Specific overrides for API documentation elements */
+.light-mode [class*="parameter-table"],
+.light-mode [class*="headers-table"],
+.light-mode [class*="api-table"] {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+  background: var(--bg-secondary) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+.light-mode [class*="parameter-table"] td,
+.light-mode [class*="headers-table"] td,
+.light-mode [class*="api-table"] td,
+.light-mode [class*="parameter-table"] th,
+.light-mode [class*="headers-table"] th,
+.light-mode [class*="api-table"] th {
+  background: transparent !important;
+  border: none !important;
+}
+
+.light-mode [class*="parameter-table"] tr,
+.light-mode [class*="headers-table"] tr,
+.light-mode [class*="api-table"] tr {
+  background: transparent !important;
+  border: none !important;
+}
+
+.light-mode [class*="parameter-table"] tr:not(:last-child) td,
+.light-mode [class*="headers-table"] tr:not(:last-child) td,
+.light-mode [class*="api-table"] tr:not(:last-child) td {
+  position: relative;
+}
+
+.light-mode [class*="parameter-table"] tr:not(:last-child) td::after,
+.light-mode [class*="headers-table"] tr:not(:last-child) td::after,
+.light-mode [class*="api-table"] tr:not(:last-child) td::after {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* Completely remove all borders from the table in the screenshot */
+.light-mode table[class*="description"],
+.light-mode table[class*="value"],
+.light-mode table[class*="key"],
+.light-mode table[class*="parameter"],
+.light-mode table[class*="type"],
+.light-mode table[class*="required"] {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: none !important; 
+  background: transparent !important;
+}
+
+.light-mode table[class*="description"] tr,
+.light-mode table[class*="value"] tr,
+.light-mode table[class*="key"] tr,
+.light-mode table[class*="parameter"] tr,
+.light-mode table[class*="type"] tr,
+.light-mode table[class*="required"] tr {
+  background: transparent !important;
+  border: none !important;
+}
+
+.light-mode table[class*="description"] td,
+.light-mode table[class*="value"] td,
+.light-mode table[class*="key"] td,
+.light-mode table[class*="parameter"] td,
+.light-mode table[class*="type"] td,
+.light-mode table[class*="required"] td,
+.light-mode table[class*="description"] th,
+.light-mode table[class*="value"] th,
+.light-mode table[class*="key"] th,
+.light-mode table[class*="parameter"] th,
+.light-mode table[class*="type"] th,
+.light-mode table[class*="required"] th {
+  border: none !important;
+  border-bottom: none !important;
+  border-top: none !important;
+}
+
+/* Maximum force removal of all table borders */
+.light-mode * {
+  box-shadow: none !important;
+}
+
+.light-mode table,
+.light-mode tbody,
+.light-mode thead,
+.light-mode tr,
+.light-mode th,
+.light-mode td {
+  box-shadow: none !important;
+  border-color: transparent !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+}
+
+/* Target the specific classes from the screenshot */
+.light-mode [class*="key"],
+.light-mode [class*="value"],
+.light-mode [class*="description"] {
+  box-shadow: none !important;
+  border: none !important;
+  border-bottom: none !important;
+  border-top: none !important;
+}
+
+/* Aggressive styling to remove all borders */
+.light-mode *::before,
+.light-mode *::after {
+  border-color: transparent !important;
+}
+
+.light-mode tbody tr,
+.light-mode thead tr {
+  border-top: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.light-mode code {
+  border-top: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+/* Specifically target the JavaScript code section */
+.light-mode [id*="javascript"],
+.light-mode [class*="javascript"] {
+  border: 1px solid var(--table-border) !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+}
+
+.light-mode [id*="javascript"] *,
+.light-mode [class*="javascript"] * {
+  border: none !important;
+}
+
+/* Reset the aggressive border removal to allow table styling */
+.light-mode * {
+  box-shadow: initial;
+}
+
+/* Table styling with subtle gray borders */
+.light-mode table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid var(--table-border);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.light-mode thead {
+  background-color: var(--table-header-bg);
+}
+
+.light-mode th {
+  border-bottom: 1px solid var(--table-border);
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.light-mode td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--table-border);
+  color: var(--text-secondary);
+}
+
+.light-mode tr:last-child td {
+  border-bottom: none;
+}
+
+/* Code section styling */
+.light-mode pre {
+  border: 1px solid var(--table-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.light-mode .code-header {
+  background-color: var(--table-header-bg);
+  border-bottom: 1px solid var(--table-border);
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Active link styling for light mode */
+.light-mode a.active,
+.light-mode button.active,
+.light-mode .active-link,
+.light-mode [aria-current="page"],
+.light-mode .text-white,
+.light-mode a[aria-current="page"] {
+  color: #0f172a !important; /* Back to black text color */
+}
+
+.light-mode nav a.active,
+.light-mode nav button.active,
+.light-mode .nav-link.active,
+.light-mode nav [aria-current="page"] {
+  color: #0f172a !important;
+  font-weight: 600;
+}
+
+/* Also ensure text is properly colored in other navigation elements */
+.light-mode nav a:hover,
+.light-mode nav button:hover {
+  color: #1e293b !important;
+}
+
+.light-mode a,
+.light-mode button,
+.light-mode .link {
+  color: var(--text-secondary);
+}
+
+.light-mode a:hover,
+.light-mode button:hover,
+.light-mode .link:hover {
+  color: var(--text-primary);
+}
+
+/* Ensure no white text in light mode */
+.light-mode .text-white {
+  color: #0f172a !important;
+}
+
+.light-mode .white {
+  color: #0f172a !important;
+}
+
+.light-mode :is([class*="text-"]) {
+  color: var(--text-primary);
+}
+
+.light-mode button[class*="primary"],
+.light-mode a[class*="primary"],
+.light-mode .btn-primary {
+  color: #0f172a !important;
+}
+
+.light-mode button[class*="primary"]:hover,
+.light-mode a[class*="primary"]:hover,
+.light-mode .btn-primary:hover {
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+  border-color: var(--primary-light);
+}
+
+/* Fix GET/POST badge text colors */
+.light-mode span[class*="GET"] {
+  color: #0f172a !important;
+}
+
+.light-mode span[class*="POST"] {
+  color: #0f172a !important;
+}
+
+/* Update button styles back to original */
+.light-mode button[class*="primary"],
+.light-mode a[class*="primary"],
+.light-mode .btn-primary {
+  color: #0f172a !important;
+}
+
+/* Remove custom method badge styles */
+.light-mode .api-method-get,
+.light-mode .method-get,
+.light-mode .get-badge,
+.light-mode .api-method-post,
+.light-mode .method-post,
+.light-mode .post-badge {
+  background-color: initial;
+  color: initial;
+  border-color: initial;
 }
 
 @import "tailwindcss";

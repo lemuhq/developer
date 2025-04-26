@@ -1,0 +1,515 @@
+[
+  {
+    "id": "bank",
+    "name": "Bank",
+    "description": "The Bank API provides functionality for bank-related operations within the application:\nGET /banks\nRetrieves a comprehensive list of all supported banks\nNo authentication required\nReturns bank details including codes and names\nPOST /validate-account\nValidates a bank account by confirming the account exists and retrieving the account holder's name\nRequires account number and bank code in request body\nReturns account details including name, number, bank information, and session reference\nGET /balance\nRetrieves the authenticated user's current account balance\nRequires authentication\nReturns balance information, currency (NGN), account number, and account name",
+    "endpoints": [
+      {
+        "id": "banklist",
+        "name": "Get Banks List",
+        "description": "Retrieves a comprehensive list of all supported banks in the system. This endpoint provides bank information including codes and names that can be used for account validation and other banking operations.",
+        "method": "GET",
+        "url": "http://localhost:5000/api/v1/developer/banks/list",
+        "headers": {
+          "X-API-Key": "public API Key",
+          "X-API-Secret": "private API Key"
+        },
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "example": {
+              "statusCode": 200,
+              "message": "Banks retrieved successfully",
+              "data": [
+                {
+                  "code": "044",
+                  "name": "Access Bank"
+                },
+                {
+                  "code": "023",
+                  "name": "Citibank Nigeria"
+                },
+                {
+                  "code": "050",
+                  "name": "Ecobank Nigeria"
+                },
+                {
+                  "code": "011",
+                  "name": "First Bank of Nigeria"
+                },
+                {
+                  "code": "058",
+                  "name": "Guaranty Trust Bank"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": "get-account-balance",
+        "name": "Get Account Balance",
+        "description": "Retrieves the current account balance and related financial information for the authenticated user. This endpoint is protected and requires user authentication to access personal financial data.",
+        "method": "GET",
+        "url": "http://localhost:5000/api/v1/developer/banks/balance",
+        "headers": {
+          "X-API-Key": "X-API-Key",
+          "X-API-Secret": "X-API-Secret"
+        },
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "example": {
+              "statusCode": 200,
+              "message": "Balance retrieved successfully",
+              "data": {
+                "balance": 0,
+                "currency": "NGN",
+                "accountNumber": "8022427263",
+                "accountName": "Nelson Uhembe"
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "validate-bank-account",
+        "name": "Validate Bank Account",
+        "description": "Validates a bank account by verifying the account exists and retrieving the account holder's name. This endpoint connects with banking partners to confirm account details before initiating transactions.",
+        "method": "POST",
+        "url": "http://localhost:5000/api/v1/developer/banks/validate-account",
+        "headers": {
+          "X-API-Key": "X-API-Key",
+          "X-API-Secret": "X-API-Secret"
+        },
+        "requestBody": {
+          "bankCode": "090267",
+          "accountNumber": "2051852136"
+        },
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "example": {
+              "statusCode": 200,
+              "message": "Account validated successfully",
+              "data": {
+                "accountName": "James Doe",
+                "accountNumber": "2051852135",
+                "bankCode": "090267",
+                "bankName": "KUDA MICROFINANCE BANK",
+                "nameEnquiryReference": "090286250418140858232995281658"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "transaction",
+    "name": "Transaction",
+    "description": "The Transaction API provides functionality for managing financial transactions within the application",
+    "endpoints": [
+      {
+        "id": "get-all-transactions",
+        "name": "Get All Transactions",
+        "description": "Retrieves a paginated list of financial transactions for the authenticated user. This endpoint provides transaction history with detailed information about each transaction including amount, type, recipient details, and status. Query Parameters:\npage (optional): Page number for pagination (default: 1)\nlimit (optional): Number of transactions per page (default: 20)\nid (optional): If provided, returns a specific transaction by ID instead of the list",
+        "method": "GET",
+        "url": "http://localhost:5000/api/v1/developer/transactions?page=1&limit=2",
+        "headers": {
+          "X-API-Key": "X-API-Key",
+          "X-API-Secret": "X-API-Secret"
+        },
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "example": {
+              "statusCode": 200,
+              "message": "Transactions retrieved successfully",
+              "data": {
+                "transactions": [
+                  {
+                    "_id": "65f8a123b42c87e1234a9876",
+                    "accountNumber": "1234567890",
+                    "transactionType": "DEBIT",
+                    "amount": 5000,
+                    "date": "2024-03-18T14:23:45.000Z",
+                    "status": "Completed",
+                    "reference": "TRF123456789",
+                    "narration": "Payment for services",
+                    "senderAccountNumber": "1234567890",
+                    "receiverAccountNumber": "0987654321",
+                    "senderAccountName": "John Doe",
+                    "receiverAccountName": "Jane Smith",
+                    "senderBank": "Lemu",
+                    "receiverBank": "Access Bank",
+                    "providerChannel": "Mobile",
+                    "createdAt": "2024-03-18T14:23:45.000Z",
+                    "updatedAt": "2024-03-18T14:23:45.000Z",
+                    "transactionLocation": "Lagos, Nigeria",
+                    "fees": 50
+                  }
+                ],
+                "pagination": {
+                  "total": 45,
+                  "page": 1,
+                  "limit": 20,
+                  "totalPages": 3
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error response",
+            "example": {
+              "statusCode": 404,
+              "message": "User not found"
+            }
+          },
+          "500": {
+            "description": "Error response",
+            "example": {
+              "statusCode": 500,
+              "message": "Error retrieving transactions",
+              "error": "Error message details"
+            }
+          }
+        }
+      },
+      {
+        "id": "get-transaction-by-id",
+        "name": "Get Transaction By ID",
+        "description": " Retrieves detailed information about a specific transaction by its unique identifier. This endpoint ensures that users can only access their own transactions and provides comprehensive transaction details",
+        "method": "GET",
+        "url": "http://localhost:5000/api/v1/developer/transactions?id=6800cd4b64afd26631c73948",
+        "headers": {
+          "X-API-Key": "X-API-Key",
+          "X-API-Secret": "X-API-Secret"
+        },
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "example": {
+              "statusCode": 200,
+              "message": "Transaction retrieved successfully",
+              "data": {
+                "_id": "65f8a123b42c87e1234a9876",
+                "accountNumber": "1234567890",
+                "transactionType": "DEBIT",
+                "amount": 5000,
+                "date": "2024-03-18T14:23:45.000Z",
+                "status": "Completed",
+                "reference": "TRF123456789",
+                "narration": "Payment for services",
+                "senderAccountNumber": "1234567890",
+                "receiverAccountNumber": "0987654321",
+                "senderAccountName": "John Doe",
+                "receiverAccountName": "Jane Smith",
+                "senderBank": "Lemu",
+                "receiverBank": "Access Bank",
+                "providerChannel": "Mobile",
+                "createdAt": "2024-03-18T14:23:45.000Z",
+                "updatedAt": "2024-03-18T14:23:45.000Z",
+                "transactionLocation": "Lagos, Nigeria",
+                "fees": 50,
+                "sessionId": "SES123456789"
+              }
+            }
+          },
+          "404": {
+            "description": "Error response",
+            "example": {
+              "statusCode": 404,
+              "message": "Transaction not found"
+            }
+          },
+          "500": {
+            "description": "Error response",
+            "example": {
+              "statusCode": 500,
+              "message": "Error retrieving transaction",
+              "error": "Error message details"
+            }
+          }
+        }
+      },
+      {
+        "id": "create-transfer",
+        "name": "Create Transfer",
+        "description": "Initiates a money transfer from the authenticated user's account to an external bank account. This endpoint handles transaction validation, fee calculation, balance verification, and creates a transaction history record upon successful transfer. Required Fields:\nnameEnquiryReference: Reference obtained from account validation\namount: Amount to transfer (in NGN)\nbankCode: Code of the recipient's bank\naccountNumber: Recipient's account number\nnarration: Description of the transaction\ntransactionPin: User's transaction PIN for authorization",
+        "method": "POST",
+        "url": "http://localhost:5000/api/v1/developer/transactions/transfer",
+        "headers": {
+          "X-API-Key": "X-API-Key",
+          "X-API-Secret": "X-API-Secret"
+        },
+        "requestBody": {
+          "nameEnquiryReference": "NEQ123456789",
+          "amount": 5000,
+          "bankCode": "044",
+          "accountNumber": "0987654321",
+          "narration": "Payment for services",
+          "transactionPin": "1234"
+        },
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "example": {
+              "statusCode": 200,
+              "message": "Transfer successful",
+              "data": {
+                "sessionId": "SES123456789",
+                "amount": 5000,
+                "fee": 50,
+                "paymentReference": "PAY987654321",
+                "bankCode": "044",
+                "bankName": "Access Bank",
+                "status": "Completed",
+                "date": "2024-03-18T14:23:45.000Z"
+              }
+            }
+          },
+          "400": {
+            "description": "Error response",
+            "example": {
+              "statusCode": 400,
+              "message": "All fields are required: nameEnquiryReference, amount, (beneficiaryBankCode or bankCode), (beneficiaryAccountNumber or accountNumber), narration, and transactionPin"
+            }
+          },
+          "401": {
+            "description": "Error response",
+            "example": {
+              "statusCode": 401,
+              "message": "Invalid transaction PIN"
+            }
+          },
+          "500": {
+            "description": "Error response",
+            "example": {
+              "statusCode": 500,
+              "message": "Error processing transfer",
+              "error": "Error message details"
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "beneficiaries",
+    "name": "Beneficiaries",
+    "description": "The Beneficiary API provides functionality for managing payment beneficiaries within the application. These endpoints allow users to save and retrieve bank account details for frequent recipients of transfers.\nKey features include:\nSaving validated bank accounts as beneficiaries\nRetrieving a user's list of saved beneficiaries\nStoring beneficiary details including account names, numbers, and bank information",
+    "endpoints": [
+      {
+        "id": "save-beneficiary",
+        "name": "Save Beneficiary",
+        "description": "Saves a validated bank account as a beneficiary for the authenticated user. This endpoint stores recipient details for future transfers, preventing the need for repeated account validation. Required Fields:\naccountName: Name of the account holder\naccountNumber: Account number of the beneficiary\nbankCode: Code of the beneficiary's bank\nnameEnquiryReference: Reference from account validation\nnickname (optional): Custom name for the beneficiary",
+        "method": "POST",
+        "url": "http://localhost:5000/api/v1/developer/beneficiaries/save",
+        "headers": {
+          "X-API-Key": "X-API-Key",
+          "X-API-Secret": "X-API-Secret"
+        },
+        "requestBody": {
+          "accountName": "John Doe",
+          "accountNumber": "0123456789",
+          "bankCode": "044",
+          "nameEnquiryReference": "NEQ123456789",
+          "nickname": "John's Account"
+        },
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "example": {
+              "statusCode": 201,
+              "message": "Beneficiary saved successfully",
+              "data": {
+                "_id": "65f8a123b42c87e1234a9876",
+                "userId": "65f8a123b42c87e1234a5432",
+                "accountName": "John Doe",
+                "accountNumber": "0123456789",
+                "bankCode": "044",
+                "bankName": "Access Bank",
+                "nameEnquiryReference": "NEQ123456789",
+                "nickname": "John's Account",
+                "isFavorite": false,
+                "createdAt": "2024-03-18T14:23:45.000Z",
+                "updatedAt": "2024-03-18T14:23:45.000Z"
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "get-beneficiaries",
+        "name": "Get Beneficiaries",
+        "description": "Retrieves the list of all saved beneficiaries for the authenticated user. This endpoint provides access to previously saved recipient details for easy selection during transfers.",
+        "method": "GET",
+        "url": "http://localhost:5000/api/v1/developer/beneficiaries/list",
+        "headers": {
+          "X-API-Key": "X-API-Key",
+          "X-API-Secret": "X-API-Secret"
+        },
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "example": {
+              "statusCode": 200,
+              "message": "Beneficiaries retrieved successfully",
+              "data": [
+                {
+                  "_id": "65f8a123b42c87e1234a9876",
+                  "userId": "65f8a123b42c87e1234a5432",
+                  "accountName": "John Doe",
+                  "accountNumber": "0123456789",
+                  "bankCode": "044",
+                  "bankName": "Access Bank",
+                  "nameEnquiryReference": "NEQ123456789",
+                  "nickname": "John's Account",
+                  "isFavorite": false,
+                  "createdAt": "2024-03-18T14:23:45.000Z",
+                  "updatedAt": "2024-03-18T14:23:45.000Z"
+                },
+                {
+                  "_id": "65f8a123b42c87e1234a9877",
+                  "userId": "65f8a123b42c87e1234a5432",
+                  "accountName": "Jane Smith",
+                  "accountNumber": "9876543210",
+                  "bankCode": "058",
+                  "bankName": "Guaranty Trust Bank",
+                  "nameEnquiryReference": "NEQ987654321",
+                  "nickname": "Jane",
+                  "isFavorite": true,
+                  "createdAt": "2024-03-17T10:15:30.000Z",
+                  "updatedAt": "2024-03-17T10:15:30.000Z"
+                }
+              ]
+            }
+          },
+          "500": {
+            "description": "Error response",
+            "example": {
+              "statusCode": 500,
+              "message": "Error retrieving beneficiaries",
+              "error": "Error message details"
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "payment",
+    "name": "Payment",
+    "description": "The Payment API provides functionality for creating virtual accounts, processing payments, and tracking payment status. These endpoints enable secure money collection through temporary virtual accounts and webhook notifications. Key features include:\nCreating temporary virtual accounts for fixed amounts\nChecking payment status by reference\nProcessing webhook notifications for real-time payment updates\nAutomatically crediting user accounts when payments are received",
+    "endpoints": [
+      {
+        "id": "create-virtual-account",
+        "name": "Create Virtual Account",
+        "description": "Creates a temporary virtual account for receiving payments. The account remains active for a limited time and is configured to accept a fixed amount. When funds are received, they're automatically credited to the user's account. Required Fields:\namount: The fixed amount to be collected via the virtual account (in NGN)",
+        "method": "POST",
+        "url": "http://localhost:5000/api/v1/developer/payments/create-virtual-account",
+        "headers": {
+          "X-API-Key": "X-API-Key",
+          "X-API-Secret": "X-API-Secret"
+        },
+        "requestBody": {
+          "amount": 5000
+        },
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "example": {
+              "statusCode": 201,
+              "message": "Virtual Account Created Successfully. Note that the account will be active for 15 mins",
+              "data": {
+                "sessionId": "SES123456789",
+                "accountNumber": "1234567890",
+                "accountName": "Payment to John Doe",
+                "validFor": 900,
+                "externalReference": "65f8a123b42c87e1234a5432165891234",
+                "amount": 5000,
+                "createdAt": "2024-03-18T14:23:45.000Z",
+                "updatedAt": "2024-03-18T14:23:45.000Z",
+                "userAccountName": "John Doe",
+                "id": "65f8a123b42c87e1234a9876",
+                "bankName": "SafeHaven MFB"
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "check-payment-status",
+        "name": "Check Payment Status",
+        "description": "Checks the current status of a payment initiated via a virtual account using its unique external reference. This endpoint provides real-time updates on payment status including success, pending, or expired states. Required Fields:\nexternalReference: The unique identifier for the payment request",
+        "method": "POST",
+        "url": "http://localhost:5000/api/v1/developer/payments/check-payment-status",
+        "headers": {
+          "X-API-Key": "X-API-Key",
+          "X-API-Secret": "X-API-Secret"
+        },
+        "requestBody": {
+          "externalReference": "65f8a123b42c87e1234a5432165891234"
+        },
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "example": {
+              "statusCode": 200,
+              "message": "Payment successful",
+              "data": {
+                "amount": 5000,
+                "accountNumber": "9876543210",
+                "accountName": "Jane Smith",
+                "bank": "First Bank",
+                "transactionTime": "2024-03-18T14:30:45.000Z",
+                "paymentReference": "PAY987654321",
+                "narration": "Payment for services",
+                "status": "success",
+                "senderDetails": {
+                  "accountNumber": "9876543210",
+                  "accountName": "Jane Smith",
+                  "bank": "First Bank"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "payment-webhook",
+        "name": "Payment Webhook",
+        "description": "Receives and processes webhook notifications from payment providers when payment events occur. This endpoint automatically updates payment status, credits user accounts, creates transaction records, and sends notifications to users.",
+        "method": "POST",
+        "url": "/api/v1/payments/webhook",
+        "headers": {
+          "X-API-Key": "X-API-Key",
+          "X-API-Secret": "X-API-Secret"
+        },
+        "requestBody": {
+          "externalReference": "65f8a123b42c87e1234a5432165891234",
+          "status": "success",
+          "eventType": "payment_notification",
+          "paymentReference": "PAY987654321",
+          "accountNumber": "9876543210",
+          "accountName": "Jane Smith"
+        },
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "example": {
+              "statusCode": 200,
+              "message": "Webhook processed successfully"
+            }
+          }
+        }
+      }
+    ]
+  }
+]
